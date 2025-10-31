@@ -11,7 +11,7 @@ on:
 
 jobs:
   get-config:
-      uses: Azure/mlops-templates/.github/workflows/read-yaml.yml@main
+      uses: ./.github/workflows/read-yaml.yml
       with:
         file_name: mlops/azureml/train/config-infra-prod.yml
   
