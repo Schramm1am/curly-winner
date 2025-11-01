@@ -38,20 +38,4 @@ jobs:
             echo "::set-output name=resource_group::$(yq '.variables.resource_group' ${{ inputs.file_name }})"
             echo "::set-output name=aml_workspace::$(yq '.variables.aml_workspace' ${{ inputs.file_name }})"
 
-jobs:
-  read:
-    runs-on: ubuntu-latest
-    outputs:
-      resource_group: ${{ steps.extract.outputs.resource_group }}
-      aml_workspace: ${{ steps.extract.outputs.aml_workspace }}
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
 
-      - name: Read YAML file
-        id: extract
-        uses: mikefarah/yq@v4
-        with:
-          cmd: |
-            echo "::set-output name=resource_group::$(yq '.variables.resource_group' ${{ inputs.file_name }})"
-            echo "::set-output name=aml_workspace::$(yq '.variables.aml_workspace' ${{ inputs.file_name }})"
