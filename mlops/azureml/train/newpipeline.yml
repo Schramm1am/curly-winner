@@ -1,8 +1,8 @@
 $schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
 type: pipeline
 display_name: decision_tree_training_pipeline
-experiment_name: pima-classification-training
-description: Training Pipeline to predict diabetes using Decision Tree classifier
+experiment_name: used-car-pricing-classification-training
+description: Training Pipeline to predict used car prices using Decision Tree classifier
 
 inputs:
   input:
@@ -29,7 +29,7 @@ jobs:
       --raw_data ${{inputs.raw_data}} 
       --train_data ${{outputs.train_data}}
       --test_data ${{outputs.test_data}}
-    environment: azureml:pima-train-env@latest
+    environment: azureml:used-car-train-env@latest
     inputs:
       raw_data: ${{parent.inputs.input}}
     outputs:
@@ -73,9 +73,9 @@ jobs:
       --model_name ${{inputs.model_name}} 
       --model_path ${{inputs.model_path}} 
       --model_info_output_path ${{outputs.model_info_output_path}}
-    environment: azureml:pima-train-env@latest
+    environment: azureml:used-car-train-env@latest
     inputs:
-      model_name: "pima_classification_model"
+      model_name: "used_car_pricing_model"
       model_path: ${{parent.jobs.sweep_step.outputs.model_output}}
     outputs:
       model_info_output_path: ${{parent.outputs.model_info_output_path}}
