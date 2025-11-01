@@ -7,7 +7,7 @@ description: Training Pipeline to predict diabetes using Decision Tree classifie
 inputs:
   input:
     type: uri_file
-    path: azureml:pima-diabetes-data@latest
+    path: azureml:used-cars-data@latest
 
 outputs:
   train_data:
