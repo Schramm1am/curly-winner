@@ -9,7 +9,7 @@ inputs:
     type: uri_folder
   criterion:
     type: string
-    default: gini
+    default: squared_error
   max_depth:
     type: integer
     default: 5
