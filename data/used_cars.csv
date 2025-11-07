@@ -1,4 +1,4 @@
-﻿Segment,Kilometers_Driven,Miles_Driven,Mileage,Engine,Power,Seats,price,,,,,
+﻿Segment,Kilometers_Driven,Miles_Driven,Mileage,Engine,Power,Seats,Price,,,,,
 non-luxury segment,32684,20309,21.9,624,37.48,4,9156,,,,,
 non-luxury segment,19698,12240,25.4,624,37.5,4,9156,,,,, 
 non-luxury segment,25500,15845,25.4,624,37.5,4,9156,,,,,
@@ -196,3 +196,4 @@ luxury segment,56000,34797,16.73,2993,218,5,81444,,,,,
 luxury segment,13372,8309,19,2996,362.07,2,114048,,,,,
 luxury segment,73000,45360,8.5,4806,500,5,163200,,,,,
 luxury segment,35277,21920,7.81,5461,362.9,5,59388,,,,,
+
