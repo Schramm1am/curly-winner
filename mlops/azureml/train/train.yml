@@ -13,6 +13,9 @@ inputs:
   max_depth:
     type: integer
     default: 5
+  n_estimators:
+    type: integer
+    default: 100
 outputs:
   model_output:
     type: mlflow_model
