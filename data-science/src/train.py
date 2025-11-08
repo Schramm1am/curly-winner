@@ -71,7 +71,7 @@ if __name__ == "__main__":
 
     # Parse Arguments
     args = parse_args()
-
+    with mlflow.start_run():
     lines = [
         f"Train dataset input path: {args.train_data}",
         f"Test dataset input path: {args.test_data}",
