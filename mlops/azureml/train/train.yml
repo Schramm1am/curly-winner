@@ -26,5 +26,6 @@ command: >-
   --test_data ${{inputs.test_data}}
   --criterion ${{inputs.criterion}}
   --max_depth ${{inputs.max_depth}}
+  --n_estimators ${{inputs.n_estimators}}
   --model_output ${{outputs.model_output}}
 environment: azureml:used-car-train-env@latest
