@@ -63,7 +63,7 @@ def main(args):
     mlflow.log_metric("MSE", float(mse))  # Log the MSE
 
     # Save the model
-    mlflow.sklearn.save_model(sk_model=model, artifact_path="model_output")  # Save the model
+    mlflow.sklearn.log_model(sk_model=model, artifact_path="model_output")  # Save the model
 
 if __name__ == "__main__":
     
