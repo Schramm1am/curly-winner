@@ -66,13 +66,11 @@ def main(args):
     mlflow.sklearn.log_model(sk_model=model, artifact_path="model_output")  # Save the model
 
 if __name__ == "__main__":
-    
-    mlflow.start_run()
-
     # Parse Arguments
     args = parse_args()
+    
     with mlflow.start_run():
-    lines = [
+        lines = [
         f"Train dataset input path: {args.train_data}",
         f"Test dataset input path: {args.test_data}",
         f"Model output path: {args.model_output}",
@@ -85,5 +83,5 @@ if __name__ == "__main__":
 
     main(args)
 
-    mlflow.end_run()
+    # mlflow.end_run()
 
