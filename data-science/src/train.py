@@ -25,7 +25,7 @@ def parse_args():
                         help='The number of trees in the forest')  # Specify the type and default value for n_estimators
     parser.add_argument('--max_depth', type=int, default=5,
                         help='The maximum depth of the tree')  # Specify the type and default value for max_depth
-    parser.add_argument('--criterion', type=str, default='squared_error',
+    parser.add_argument('--criterion', type=str, default='mse',
                     help='The function to measure the quality of a split')
 
     args = parser.parse_args()
