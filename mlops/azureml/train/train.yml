@@ -9,7 +9,7 @@ inputs:
     type: uri_folder
   criterion:
     type: string
-    default: squared_error
+    default: mse
   max_depth:
     type: integer
     default: 5
