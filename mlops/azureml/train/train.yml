@@ -18,7 +18,7 @@ inputs:
     default: 100
 outputs:
   model_output:
-    type: mflow_model
+    type: mlflow_model
 code: ../../../data-science/src
 command: >-
   python train.py 
