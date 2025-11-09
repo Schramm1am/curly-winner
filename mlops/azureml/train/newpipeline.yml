@@ -11,8 +11,11 @@ inputs:
 
 outputs:
   train_data:
+    type:uri_folder
   test_data:
+    type:uri_folder
   model_info_output_path:
+    type: uri_file
 
 settings:
   default_datastore: azureml:workspaceblobstore
@@ -47,7 +50,11 @@ jobs:
       model_output:
         type: mlflow_model
     sampling_algorithm: random
-    trial: ./train.yml  # Refers to a separate command component
+    trial: 
+    component: ./train.yml  # Refers to a separate command component
+    inputs:
+        train_data: ${{parent.jobs.prep_data.outputs.train_data}}
+        test_data: ${{parent.jobs.prep_data.outputs.test_data}}
     search_space:
       criterion:
         type: choice
