@@ -69,6 +69,9 @@ if __name__ == "__main__":
     # Parse Arguments
     args = parse_args()
     
+    # Diagnostic: print the model_output argument
+    print(f"[Diagnostic] Model output path argument: {args.model_output}")
+    
     with mlflow.start_run():
         lines = [
         f"Train dataset input path: {args.train_data}",
