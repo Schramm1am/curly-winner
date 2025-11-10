@@ -11,9 +11,9 @@ inputs:
 
 outputs:
   train_data:
-    type:uri_folder
+    type: uri_folder
   test_data:
-    type:uri_folder
+    type: uri_folder
   model_info_output_path:
     type: uri_folder
 
