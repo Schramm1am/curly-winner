@@ -11,6 +11,8 @@ import pandas as pd
 import mlflow
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
+from azure.identity import DefaultAzureCredential
+from azure.ai.ml import MLClient
 
 
 def parse_args():
@@ -27,6 +29,11 @@ def parse_args():
 
 def main(args):  # Write the function name for the main data preparation logic
     '''Read, preprocess, split, and save datasets'''
+
+    # Auth workaround for student workspaces
+    credential = DefaultAzureCredential()
+    ml_client = MLClient(credential, subscription_id="be39bd0a-b78a-4b84-9646-d4021e417375", resource_group_name="default_resource_group", workspace_name="weeksix")
+    print("Using DefaultAzureCredential for auth")
 
     # Reading Data
     df = pd.read_csv(args.raw_data)
