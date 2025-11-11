@@ -79,9 +79,7 @@ jobs:
     environment: azureml:used-car-train-env@latest
     inputs:
       # declare model_name as a typed input (safer and clearer)
-      model_name:
-        type: string
-        default: used_car_pricing_model
+      model_name: "used_cars_price_prediction_model"
       model_path: ${{parent.jobs.sweep_step.outputs.model_output}}
     outputs:
       model_info_output_path: ${{parent.outputs.model_info_output_path}}
