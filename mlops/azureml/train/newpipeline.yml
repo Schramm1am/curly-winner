@@ -3,12 +3,10 @@ type: pipeline
 display_name: decision_tree_training_pipeline
 experiment_name: used-car-pricing-classification-training
 description: Training Pipeline to predict used car prices using RandomForestRegressor
-
 inputs:
   raw_data:
     type: uri_file
     path: azureml:used-cars-data@latest
-
 outputs:
   train_data:
     type: uri_folder
@@ -16,40 +14,38 @@ outputs:
     type: uri_folder
   model_info_output_path:
     type: uri_folder
-
 settings:
   default_datastore: azureml:workspaceblobstore
   default_compute: azureml:test-cluster
   continue_on_step_failure: false
-
 jobs:
   prep_data:
     name: prep_data
     display_name: prep-data
     code: ../../../data-science/src
     command: >-
-      python prep.py 
-      --raw_data ${{inputs.raw_data}} 
+      python prep.py
+      --raw_data ${{inputs.raw_data}}
       --train_data ${{outputs.train_data}}
       --test_data ${{outputs.test_data}}
+      --test_train_ratio 0.2
     environment: azureml:used-car-train-env@latest
     inputs:
       raw_data: ${{parent.inputs.raw_data}}
     outputs:
       train_data: ${{parent.outputs.train_data}}
       test_data: ${{parent.outputs.test_data}}
-
   sweep_step:
     name: sweep_job
     display_name: sweep-job
     type: sweep
-    trial: ./train.yml  # Refers to a separate command component
+    trial: ./train.yml
     inputs:
-        train_data: ${{parent.jobs.prep_data.outputs.train_data}}
-        test_data: ${{parent.jobs.prep_data.outputs.test_data}}
+      train_data: ${{parent.jobs.prep_data.outputs.train_data}}
+      test_data: ${{parent.jobs.prep_data.outputs.test_data}}
     outputs:
       model_output:
-        type: mlflow_model  
+        type: uri_folder  # Reliable fallback
     sampling_algorithm: random
     search_space:
       criterion:
@@ -62,23 +58,20 @@ jobs:
       goal: minimize
       primary_metric: MSE
     limits:
-      max_total_trials: 20
-      max_concurrent_trials: 10
+      max_total_trials: 5  # Mini for testing
+      max_concurrent_trials: 1  # Quota-friendly
       timeout: 7200
-
-
   register_model:
     name: register_model
     display_name: register-model
     code: ../../../data-science/src
     command: >-
-      python register.py 
-      --model_name ${{inputs.model_name}} 
+      python register.py
+      --model_name ${{inputs.model_name}}
       --model_path ${{inputs.model_path}}
       --model_info_output_path ${{outputs.model_info_output_path}}
     environment: azureml:used-car-train-env@latest
     inputs:
-      # declare model_name as a typed input (safer and clearer)
       model_name: "used_cars_price_prediction_model"
       model_path: ${{parent.jobs.sweep_step.outputs.model_output}}
     outputs:
