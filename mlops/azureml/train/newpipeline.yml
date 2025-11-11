@@ -5,7 +5,7 @@ experiment_name: used-car-pricing-classification-training
 description: Training Pipeline to predict used car prices using RandomForestRegressor
 
 inputs:
-  input:
+  raw_data:
     type: uri_file
     path: azureml:used-cars-data@latest
 
