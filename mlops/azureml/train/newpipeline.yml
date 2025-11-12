@@ -1,4 +1,4 @@
- $schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
+$schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
 type: pipeline
 display_name: decision_tree_training_pipeline
 experiment_name: used-car-pricing-classification-training
