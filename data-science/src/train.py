@@ -16,6 +16,7 @@ from sklearn.metrics import mean_squared_error
 import mlflow
 import mlflow.sklearn
 from mlflow.models.signature import infer_signature  # For model signature
+from azureml.core import Run
 
 # Set MLflow logging to DEBUG for better error visibility in Azure logs
 logging.getLogger("mlflow").setLevel(logging.DEBUG)
@@ -130,6 +131,7 @@ if __name__ == "__main__":
     print(f"Max Depth: {args.max_depth}")
 
     # Start MLflow run explicitly (ensures active run for all logging)
-    with mlflow.start_run():
+    run = Run.get_context()
+    with mlflow.start_run(run_id=run.id):
         main(args)
         # No explicit end_run needed; context manager handles it
