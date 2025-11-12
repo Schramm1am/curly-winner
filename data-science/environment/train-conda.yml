@@ -1,4 +1,4 @@
- channels:
+channels:
   - defaults
   - anaconda
   - conda-forge
@@ -15,7 +15,18 @@ dependencies:
       - matplotlib==3.3.3
       - mlflow==2.9.2
       - cloudpickle==2.2.1
-      - >-
-        git+https://github.com/microsoft/AzureML-Observability#subdirectory=aml-obs-client
-      - >-
-        git+https://github.com/microsoft/AzureML-Observability#subdirectory=aml-obs-collector
+      - git+https://github.com/microsoft/AzureML-Observability#subdirectory=aml-obs-client
+      - git+https://github.com/microsoft/AzureML-Observability#subdirectory=aml-obs-collector
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
