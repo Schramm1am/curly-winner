@@ -1,4 +1,4 @@
-$schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
+ $schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
 type: pipeline
 display_name: decision_tree_training_pipeline
 experiment_name: used-car-pricing-classification-training
@@ -45,7 +45,7 @@ jobs:
       test_data: ${{parent.jobs.prep_data.outputs.test_data}}
     outputs:
       model_output:
-        type: uri_folder  # Reliable fallback
+        type: uri_folder
     sampling_algorithm: random
     search_space:
       criterion:
@@ -58,8 +58,8 @@ jobs:
       goal: minimize
       primary_metric: MSE
     limits:
-      max_total_trials: 5  # Mini for testing
-      max_concurrent_trials: 1  # Quota-friendly
+      max_total_trials: 5
+      max_concurrent_trials: 1
       timeout: 7200
   register_model:
     name: register_model
