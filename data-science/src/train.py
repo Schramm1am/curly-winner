@@ -104,7 +104,7 @@ def main(args):
     try:
         mlflow.sklearn.log_model(
             sk_model=model,
-            artifact_path=args.model_output,
+            artifact_path="model",
             signature=signature,
             input_example=input_example,
             conda_env=None  # Use pip reqs from env; avoids old sklearn issues
