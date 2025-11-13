@@ -16,7 +16,7 @@ outputs:
     type: uri_folder
 settings:
   default_datastore: azureml:workspaceblobstore
-  default_compute: azureml:test-cluster
+  default_compute: azureml:cpu-cluster
   continue_on_step_failure: false
 jobs:
   prep_data:
