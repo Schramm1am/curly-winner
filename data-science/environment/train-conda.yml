@@ -4,7 +4,6 @@ channels:
   - conda-forge
 dependencies:
   - python=3.8
-  - pip
   - pip:
       - azureml-mlflow==1.13.0
       - azure-ai-ml==1.0.0
