@@ -28,6 +28,7 @@ def parse_args():
     parser.add_argument("--train_data", type=str, help="Path to train dataset")
     parser.add_argument("--test_data", type=str, help="Path to test dataset")
     parser.add_argument("--model_output", type=str, help="Path of output model")
+    parser.add_argument("--mlflow_log_model", type=str, help="Path to write MLflow model folder")
     parser.add_argument('--n_estimators', type=int, default=100,
                         help='The number of trees in the forest')
     parser.add_argument('--max_depth', type=int, default=5,
@@ -109,7 +110,11 @@ def main(args):
             input_example=input_example,
             conda_env=None  # Use pip reqs from env; avoids old sklearn issues
         )
+        # Save model to pipeline output folder
         print("Model logged successfully via MLflow!")
+        mlflow.sklearn.save_model(model, args.mlflow_log_model)
+        print(f"MLflow model saved to pipeline output folder: {args.mlflow_log_model}")
+
     except Exception as e:
         print(f"MLflow logging failed: {e}")
         # Fallback: Save model manually and log as artifact
