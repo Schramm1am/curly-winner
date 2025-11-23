@@ -22,6 +22,7 @@ command: >-
   --train_data ${{inputs.train_data}}
   --test_data ${{inputs.test_data}}
   --model_output ${{outputs.model_output}}
+  --mlflow_log_model ${{outputs.mlflow_log_model}}
   --max_depth ${{inputs.max_depth}}
   --criterion ${{inputs.criterion}}
   --n_estimators 100
