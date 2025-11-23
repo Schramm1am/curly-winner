@@ -15,7 +15,7 @@ outputs:
   model_output:
     type: uri_folder
   mlflow_log_model:        # <-- new stable output
-    type: uri_folde
+    type: uri_folder
 code: ../../../data-science/src
 command: >-
   python train.py
