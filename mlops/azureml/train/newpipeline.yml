@@ -46,6 +46,8 @@ jobs:
     outputs:
       model_output:
         type: uri_folder
+      mlflow_log_model:
+        type: uri_folder  
     sampling_algorithm: random
     search_space:
       criterion:
@@ -73,6 +75,6 @@ jobs:
     environment: azureml:used-car-train-env@latest
     inputs:
       model_name: "used_cars_price_prediction_model"
-      model_path: ${{parent.jobs.sweep_step.outputs.mlflow_log_model_1832499644}}
+      model_path: ${{parent.jobs.sweep_step.outputs.mlflow_log_model}}
     outputs:
       model_info_output_path: ${{parent.outputs.model_info_output_path}}
