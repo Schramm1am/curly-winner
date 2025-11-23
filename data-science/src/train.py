@@ -112,9 +112,17 @@ def main(args):
         )
         # Save model to pipeline output folder
         print("Model logged successfully via MLflow!")
+        
+        # ✅ Register the model in the MLflow registry
+        run = Run.get_context()
+        model_uri = f"runs:/{run.id}/model"
+        mlflow.register_model(model_uri, "used_cars_price_prediction_model")
+        print("Model registered successfully in MLflow registry!")
+
+        # Save model to pipeline output folder
         mlflow.sklearn.save_model(model, args.mlflow_log_model)
         print(f"MLflow model saved to pipeline output folder: {args.mlflow_log_model}")
-
+    
     except Exception as e:
         print(f"MLflow logging failed: {e}")
         # Fallback: Save model manually and log as artifact
